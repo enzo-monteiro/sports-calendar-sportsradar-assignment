@@ -1,1 +1,155 @@
+:root {
+    --primary-color: #007bff;
+    --text-color: #333;
+    --border-color: #ddd;
+    --background-color: #f4f4f9;
+    --event-marker-color: #dc3545;
+}
 
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    color: var(--text-color);
+    background-color: var(--background-color);
+    line-height: 1.6;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: var(--primary-color);
+}
+
+nav {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#showCalendar {
+    padding: 10px 20px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s;
+}
+
+#showCalendar:hover {
+    background-color: #0056b3;
+}
+
+#calendarSection {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 15px;
+    background-color: white;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+    font-weight: bold;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 5px 5px 0 0;
+    padding: 10px 0;
+}
+
+.weekdays > div {
+    padding: 5px 0;
+}
+
+#calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    border-left: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.day-cell {
+    min-height: 100px;
+    border-top: 1px solid var(--border-color);
+    border-right: 1px solid var(--border-color);
+    padding: 8px;
+    text-align: right;
+    position: relative;
+    transition: background-color 0.2s;
+    cursor: pointer;
+    background-color: #fff;
+}
+
+.day-cell:hover {
+    background-color: #f0f0f5;
+}
+
+.other-month {
+    background-color: #e9ecef;
+    color: #a0a0a0;
+}
+
+.day-number {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.event-marker {
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+    width: 8px;
+    height: 8px;
+    background-color: var(--event-marker-color);
+    border-radius: 50%;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+}
+
+.event-info {
+    font-size: 0.75em;
+    color: var(--text-color);
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-top: 5px;
+    line-height: 1.3;
+    padding-left: 5px;
+}
+
+.current-day {
+    border: 2px solid var(--event-marker-color);
+    background-color: #fff3cd;
+}
+
+@media (max-width: 600px) {
+    .day-cell {
+        min-height: 70px;
+        font-size: 0.9em;
+        padding: 5px;
+    }
+
+    .day-number {
+        font-size: 1em;
+    }
+
+    .event-info {
+        font-size: 0.65em;
+    }
+
+    .weekdays > div {
+        padding: 5px 2px;
+    }
+}
