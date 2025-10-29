@@ -1,35 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sports Event Calendar</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sports Event Calendar</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Sports Event Calendar</h1>
+    <h1>Sports Event Calendar</h1>
 
-  <nav>
-    <button id="showCalendar">Calendar</button>
-  </nav>
+    <nav>
+        <button id="showCalendar" onclick="showCalendarView()">Calendar</button>
+    </nav>
 
-  <section id="calendarSection">
-    <span id="monthDisplay"></span>
-    
-    <div class="weekdays">
-      <div>Sun</div>
-      <div>Mon</div>
-      <div>Tue</div>
-      <div>Wed</div>
-      <div>Thu</div>
-      <div>Fri</div>
-      <div>Sat</div>
-    </div>
+    <section id="calendarSection">
+        <div class="calendar-header"> 
+            <span id="monthDisplay"></span>
+        </div>
 
-    <div id="calendar"></div>
-  </section>
+        <div class="weekdays">
+            <div>Sun</div>
+            <div>Mon</div>
+            <div>Tue</div>
+            <div>Wed</div>
+            <div>Thu</div>
+            <div>Fri</div>
+            <div>Sat</div>
+        </div>
 
-  <script src="script.js"></script>
+        <div id="calendar">
+        </div>
+    </section>
+
+    <section id="detailSection">
+        <h2>Event Details</h2>
+        <div id="detailContent">
+        </div>
+    </section>
+
+    <script src="script.js"></script>
 </body>
 </html>
-

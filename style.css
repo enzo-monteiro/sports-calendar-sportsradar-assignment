@@ -22,7 +22,7 @@ body {
 
 h1 {
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     color: var(--primary-color);
 }
 
@@ -46,7 +46,8 @@ nav {
     background-color: #0056b3;
 }
 
-#calendarSection {
+#calendarSection,
+#detailSection {
     max-width: 900px;
     margin: 0 auto;
     padding: 15px;
@@ -56,12 +57,12 @@ nav {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-#monthDisplay {
-    display: block;
+.calendar-header {
     text-align: center;
     font-size: 1.5em;
-    margin-bottom: 15px;
     font-weight: bold;
+    margin-bottom: 15px;
+    color: var(--primary-color);
 }
 
 .weekdays {
@@ -98,20 +99,24 @@ nav {
     background-color: #fff;
 }
 
-.day-cell:hover {
+.day-cell:hover:not(.other-month) {
     background-color: #f0f0f5;
 }
 
 .other-month {
     background-color: #e9ecef;
     color: #a0a0a0;
+    cursor: default;
 }
 
 .day-number {
     font-size: 1.2em;
     font-weight: bold;
-    margin-bottom: 5px;
     display: block;
+}
+
+.event-day {
+    background-color: #fcece9;
 }
 
 .event-marker {
@@ -126,7 +131,8 @@ nav {
 }
 
 .event-info {
-    font-size: 0.75em;
+    font-size: 0.7em;
+    font-weight: 500;
     color: var(--text-color);
     text-align: left;
     white-space: nowrap;
@@ -142,6 +148,59 @@ nav {
     background-color: #fff3cd;
 }
 
+/* --- Task 2: Detail View Styles --- */
+
+#detailSection {
+    display: none;
+    padding: 30px;
+}
+
+#detailSection h2 {
+    text-align: center;
+    color: var(--event-marker-color);
+    margin-bottom: 20px;
+}
+
+.detail-card {
+    padding: 20px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background-color: #fff;
+    margin-bottom: 20px;
+}
+
+.detail-card h2 {
+    margin-top: 0;
+    font-size: 2em;
+    color: var(--primary-color);
+}
+
+.full-descriptor-text {
+    font-size: 1.1em;
+    color: var(--text-color);
+    padding: 10px 0;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+.btn-back {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s;
+}
+
+.btn-back:hover {
+    background-color: #5a6268;
+}
+
+/* --- Responsiveness --- */
 @media (max-width: 600px) {
     .day-cell {
         min-height: 70px;
@@ -155,9 +214,5 @@ nav {
 
     .event-info {
         font-size: 0.65em;
-    }
-
-    .weekdays > div {
-        padding: 5px 2px;
     }
 }
