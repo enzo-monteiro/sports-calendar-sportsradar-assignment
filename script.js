@@ -2,7 +2,15 @@ const calendarEl = document.getElementById('calendar');
 const monthDisplayEl = document.getElementById('monthDisplay');
 const calendarSectionEl = document.getElementById('calendarSection');
 const detailSectionEl = document.getElementById('detailSection');
+const addEventSectionEl = document.getElementById('addEventSection');
 const detailContentEl = document.getElementById('detailContent');
+
+// Navigation buttons
+const showCalendarBtn = document.getElementById('showCalendar');
+const addEventBtn = document.getElementById('addEventButton');
+const backToAddEventBtn = document.getElementById('backToAddEvent');
+
+const addEventForm = document.getElementById('addEventForm');
 
 const sportsEvents = [
     {
@@ -17,7 +25,6 @@ const sportsEvents = [
     }
 ];
 
-const WEEKDAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 const MONTH_NAMES = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 const formatDate = (year, monthIndex, day) => {
@@ -30,14 +37,15 @@ const getEventsForDate = (dateString) => {
     return sportsEvents.filter(event => event.date === dateString);
 };
 
-const showView = (viewId) => {
-    calendarSectionEl.style.display = viewId === 'calendar' ? 'block' : 'none';
-    detailSectionEl.style.display = viewId === 'detail' ? 'block' : 'none';
+const showView = (view) => {
+    calendarSectionEl.style.display = view === 'calendar' ? 'block' : 'none';
+    detailSectionEl.style.display = view === 'detail' ? 'block' : 'none';
+    addEventSectionEl.style.display = view === 'addEvent' ? 'block' : 'none';
 };
 
-const showCalendarView = () => {
-    showView('calendar');
-};
+const showCalendarView = () => showView('calendar');
+
+const showAddEventView = () => showView('addEvent');
 
 const showEventDetail = (event) => {
     showView('detail');
@@ -99,7 +107,7 @@ const renderCalendar = (year, monthIndex) => {
 
         if (dayEvents.length > 0) {
             const event = dayEvents[0];
-            
+
             dayCell.classList.add('event-day');
 
             const eventMarker = document.createElement('div');
@@ -108,7 +116,7 @@ const renderCalendar = (year, monthIndex) => {
 
             const eventInfo = document.createElement('div');
             eventInfo.className = 'event-info';
-            eventInfo.textContent = event.info; 
+            eventInfo.textContent = event.info;
             dayCell.appendChild(eventInfo);
 
             dayCell.onclick = () => showEventDetail(event);
@@ -119,6 +127,36 @@ const renderCalendar = (year, monthIndex) => {
         calendarEl.appendChild(dayCell);
     }
 };
+
+
+addEventForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const date = document.getElementById('eventDate').value;
+    const time = document.getElementById('eventTime').value;
+    const sport = document.getElementById('eventSport').value;
+    const teams = document.getElementById('eventTeams').value;
+
+    const eventObj = {
+        date: date,
+        info: `${time}, ${sport}`,
+        fullDescriptor: `${date}, ${time}, ${sport}, ${teams}`
+    };
+
+    sportsEvents.push(eventObj);
+
+    const selectedDate = new Date(date);
+    renderCalendar(selectedDate.getFullYear(), selectedDate.getMonth());
+
+    addEventForm.reset();
+    showCalendarView();
+});
+
+
+showCalendarBtn.onclick = showCalendarView;
+addEventBtn.onclick = showAddEventView;
+backToAddEventBtn.onclick = showCalendarView;
+
 
 document.addEventListener('DOMContentLoaded', () => {
     const now = new Date();

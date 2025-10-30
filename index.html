@@ -10,11 +10,12 @@
     <h1>Sports Event Calendar</h1>
 
     <nav>
-        <button id="showCalendar" onclick="showCalendarView()">Calendar</button>
+        <button id="showCalendar">Calendar</button>
+        <button id="addEventButton">Add Event</button>
     </nav>
 
     <section id="calendarSection">
-        <div class="calendar-header"> 
+        <div class="calendar-header">
             <span id="monthDisplay"></span>
         </div>
 
@@ -28,14 +29,38 @@
             <div>Sat</div>
         </div>
 
-        <div id="calendar">
-        </div>
+        <div id="calendar"></div>
     </section>
 
     <section id="detailSection">
         <h2>Event Details</h2>
         <div id="detailContent">
         </div>
+    </section>
+
+    <section id="addEventSection">
+        <h2>Add New Event</h2>
+        <form id="addEventForm">
+            <div class="form-group">
+                <label for="eventDate">Date:</label>
+                <input type="date" id="eventDate" required>
+            </div>
+            <div class="form-group">
+                <label for="eventTime">Time:</label>
+                <input type="time" id="eventTime" required>
+            </div>
+            <div class="form-group">
+                <label for="eventSport">Sport:</label>
+                <input type="text" id="eventSport" placeholder="e.g., Football" required>
+            </div>
+            <div class="form-group">
+                <label for="eventTeams">Teams/Participants:</label>
+                <input type="text" id="eventTeams" placeholder="e.g., Salzburg vs. Sturm" required>
+            </div>
+            
+            <button type="button" id="backToAddEvent" class="btn-back">Cancel / Back to Calendar</button>
+            <button type="submit" class="btn-submit">Save Event</button>
+        </form>
     </section>
 
     <script src="script.js"></script>
