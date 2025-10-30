@@ -1,3 +1,6 @@
+/* =========================
+   Root Variables & Defaults
+========================= */
 :root {
     --primary-color: #007bff;
     --text-color: #333;
@@ -20,17 +23,26 @@ body {
     padding: 20px;
 }
 
-h1 {
+/* =========================
+   Header & Navigation
+========================= */
+header {
     text-align: center;
     margin-bottom: 20px;
+}
+
+h1 {
+    margin-bottom: 15px;
     color: var(--primary-color);
 }
 
 nav {
-    text-align: center;
-    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
 }
 
+/* Main nav buttons */
 nav button {
     padding: 10px 20px;
     background-color: var(--primary-color);
@@ -39,7 +51,6 @@ nav button {
     border-radius: 5px;
     cursor: pointer;
     font-size: 1em;
-    margin: 0 10px;
     transition: background-color 0.3s;
 }
 
@@ -47,25 +58,22 @@ nav button:hover {
     background-color: #0056b3;
 }
 
-#calendarSection, 
+/* =========================
+   Calendar Layout
+========================= */
+#calendarSection,
 #detailSection,
 #addEventSection {
     max-width: 900px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 15px;
     background-color: white;
     border: 1px solid var(--border-color);
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* --- Hide non-selected views --- */
-#detailSection,
-#addEventSection {
-    display: none;
-}
-
-/* Calendar Header */
+/* Month name display */
 .calendar-header {
     text-align: center;
     font-size: 1.5em;
@@ -74,7 +82,7 @@ nav button:hover {
     color: var(--primary-color);
 }
 
-/* Weekday Row */
+/* Weekday header row */
 .weekdays {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
@@ -86,7 +94,7 @@ nav button:hover {
     padding: 10px 0;
 }
 
-/* Calendar Grid */
+/* Calendar grid for days */
 #calendar {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
@@ -94,6 +102,7 @@ nav button:hover {
     border-bottom: 1px solid var(--border-color);
 }
 
+/* Individual calendar cell */
 .day-cell {
     min-height: 100px;
     border-top: 1px solid var(--border-color);
@@ -101,32 +110,34 @@ nav button:hover {
     padding: 8px;
     text-align: right;
     position: relative;
-    transition: background-color 0.2s;
     cursor: pointer;
     background-color: #fff;
+    transition: background-color 0.2s;
 }
 
 .day-cell:hover:not(.other-month) {
     background-color: #f0f0f5;
 }
 
+/* Days outside the current month */
 .other-month {
     background-color: #e9ecef;
     color: #a0a0a0;
     cursor: default;
 }
 
+/* Date number inside each cell */
 .day-number {
     font-size: 1.2em;
     font-weight: bold;
-    display: block;
 }
 
+/* Day that has at least one event */
 .event-day {
     background-color: #fcece9;
 }
 
-/* Event UI inside day cells */
+/* Small dot marker for event days */
 .event-marker {
     position: absolute;
     bottom: 5px;
@@ -138,6 +149,7 @@ nav button:hover {
     box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
 }
 
+/* Short event preview inside a day */
 .event-info {
     font-size: 0.7em;
     font-weight: 500;
@@ -147,21 +159,31 @@ nav button:hover {
     overflow: hidden;
     text-overflow: ellipsis;
     margin-top: 5px;
+    line-height: 1.3;
     padding-left: 5px;
 }
 
+/* Highlight today’s date */
 .current-day {
     border: 2px solid var(--event-marker-color);
     background-color: #fff3cd;
 }
 
-/* Detail Page */
+/* =========================
+   Event Details Section
+========================= */
+#detailSection {
+    display: none;
+    padding: 30px;
+}
+
 #detailSection h2 {
     text-align: center;
     color: var(--event-marker-color);
     margin-bottom: 20px;
 }
 
+/* Card-style layout for event details */
 .detail-card {
     padding: 20px;
     border: 1px solid var(--border-color);
@@ -181,26 +203,49 @@ nav button:hover {
     color: var(--text-color);
     padding: 10px 0;
     white-space: pre-wrap;
+    word-break: break-word;
 }
 
-/* Buttons */
-.btn-back, .btn-submit {
+/* =========================
+   Add Event Form
+========================= */
+#addEventSection {
+    display: none;
+    padding: 30px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="date"],
+input[type="time"],
+input[type="text"] {
     width: 100%;
-    margin-top: 10px;
-    padding: 12px;
+    padding: 8px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+/* Form buttons */
+.btn-submit,
+.btn-back {
+    display: block;
+    width: 100%;
+    padding: 10px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-size: 1em;
-}
-
-.btn-back {
-    background-color: #6c757d;
-    color: white;
-}
-
-.btn-back:hover {
-    background-color: #5a6268;
+    transition: background-color 0.3s;
+    margin-top: 10px;
 }
 
 .btn-submit {
@@ -212,37 +257,37 @@ nav button:hover {
     background-color: #0056b3;
 }
 
-/* Add Event Form Layout */
-#addEventSection h2 {
+.btn-back {
+    background-color: #6c757d;
+    color: white;
+}
+
+.btn-back:hover {
+    background-color: #5a6268;
+}
+
+/* =========================
+   Footer
+========================= */
+footer {
     text-align: center;
-    margin-bottom: 15px;
-    color: var(--primary-color);
+    margin-top: 25px;
+    color: #666;
+    font-size: 0.9em;
 }
 
-#addEventForm .form-group {
-    margin-bottom: 15px;
-}
+/* =========================
+   Responsive Adjustments
+========================= */
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        gap: 8px;
+    }
 
-#addEventForm label {
-    font-weight: bold;
-    display: block;
-    margin-bottom: 5px;
-}
-
-#addEventForm input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid var(--border-color);
-    border-radius: 5px;
-    font-size: 1em;
-}
-
-/* Mobile */
-@media (max-width: 600px) {
     .day-cell {
-        min-height: 70px;
+        min-height: 80px;
         font-size: 0.9em;
-        padding: 5px;
     }
 
     .day-number {
@@ -253,8 +298,28 @@ nav button:hover {
         font-size: 0.65em;
     }
 
+    #calendarSection,
+    #addEventSection,
+    #detailSection {
+        padding: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+
     nav button {
-        width: 45%;
-        margin: 5px;
+        width: 100%;
+        font-size: 0.95em;
+    }
+
+    h1 {
+        font-size: 1.4em;
+    }
+
+    .calendar-header {
+        font-size: 1.2em;
     }
 }

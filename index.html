@@ -7,62 +7,91 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Sports Event Calendar</h1>
 
-    <nav>
-        <button id="showCalendar">Calendar</button>
-        <button id="addEventButton">Add Event</button>
-    </nav>
+    <!-- Header and Navigation -->
+    <header>
+        <h1>Sports Event Calendar</h1>
+        <nav>
+            <!-- Navigation buttons for switching between views -->
+            <button id="showCalendar">Calendar</button>
+            <button id="addEventButton">Add Event</button>
+        </nav>
+    </header>
 
-    <section id="calendarSection">
-        <div class="calendar-header">
-            <span id="monthDisplay"></span>
-        </div>
+    <!-- Main content area -->
+    <main>
 
-        <div class="weekdays">
-            <div>Sun</div>
-            <div>Mon</div>
-            <div>Tue</div>
-            <div>Wed</div>
-            <div>Thu</div>
-            <div>Fri</div>
-            <div>Sat</div>
-        </div>
-
-        <div id="calendar"></div>
-    </section>
-
-    <section id="detailSection">
-        <h2>Event Details</h2>
-        <div id="detailContent">
-        </div>
-    </section>
-
-    <section id="addEventSection">
-        <h2>Add New Event</h2>
-        <form id="addEventForm">
-            <div class="form-group">
-                <label for="eventDate">Date:</label>
-                <input type="date" id="eventDate" required>
+        <!-- Calendar view: shows the month grid and events -->
+        <section id="calendarSection">
+            <div class="calendar-header">
+                <span id="monthDisplay"></span>
             </div>
-            <div class="form-group">
-                <label for="eventTime">Time:</label>
-                <input type="time" id="eventTime" required>
-            </div>
-            <div class="form-group">
-                <label for="eventSport">Sport:</label>
-                <input type="text" id="eventSport" placeholder="e.g., Football" required>
-            </div>
-            <div class="form-group">
-                <label for="eventTeams">Teams/Participants:</label>
-                <input type="text" id="eventTeams" placeholder="e.g., Salzburg vs. Sturm" required>
-            </div>
-            
-            <button type="button" id="backToAddEvent" class="btn-back">Cancel / Back to Calendar</button>
-            <button type="submit" class="btn-submit">Save Event</button>
-        </form>
-    </section>
 
+            <!-- Days of the week -->
+            <div class="weekdays">
+                <div>Sun</div>
+                <div>Mon</div>
+                <div>Tue</div>
+                <div>Wed</div>
+                <div>Thu</div>
+                <div>Fri</div>
+                <div>Sat</div>
+            </div>
+
+            <!-- Calendar grid (filled dynamically by JS) -->
+            <div id="calendar"></div>
+        </section>
+
+        <!-- Event detail view: appears when an event is clicked -->
+        <section id="detailSection">
+            <h2>Event Details</h2>
+            <div id="detailContent"></div>
+        </section>
+
+        <!-- Add Event view: form for adding new events -->
+        <section id="addEventSection">
+            <h2>Add New Event</h2>
+
+            <form id="addEventForm">
+                <!-- Date input -->
+                <div class="form-group">
+                    <label for="eventDate">Date:</label>
+                    <input type="date" id="eventDate" required>
+                </div>
+
+                <!-- Time input -->
+                <div class="form-group">
+                    <label for="eventTime">Time:</label>
+                    <input type="time" id="eventTime" required>
+                </div>
+
+                <!-- Sport name input -->
+                <div class="form-group">
+                    <label for="eventSport">Sport:</label>
+                    <input type="text" id="eventSport" placeholder="e.g., Football" required>
+                </div>
+
+                <!-- Teams or participants input -->
+                <div class="form-group">
+                    <label for="eventTeams">Teams/Participants:</label>
+                    <input type="text" id="eventTeams" placeholder="e.g., Salzburg vs. Sturm" required>
+                </div>
+
+                <!-- Form action buttons -->
+                <button type="button" id="backToAddEvent" class="btn-back">Cancel / Back to Calendar</button>
+                <button type="submit" class="btn-submit">Save Event</button>
+            </form>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p style="text-align:center; margin-top:20px; color:#666;">&copy; 2025 Sports Event Calendar</p>
+    </footer>
+
+    <!-- JavaScript logic for calendar, events, and navigation -->
     <script src="script.js"></script>
+
 </body>
 </html>

@@ -1,23 +1,22 @@
+/* =========================
+   DOM Element References
+========================= */
 const calendarEl = document.getElementById('calendar');
 const monthDisplayEl = document.getElementById('monthDisplay');
 const calendarSectionEl = document.getElementById('calendarSection');
 const detailSectionEl = document.getElementById('detailSection');
-const addEventSectionEl = document.getElementById('addEventSection');
 const detailContentEl = document.getElementById('detailContent');
+const addEventSectionEl = document.getElementById('addEventSection');
 
-// Navigation buttons
+/* Navigation buttons */
 const showCalendarBtn = document.getElementById('showCalendar');
 const addEventBtn = document.getElementById('addEventButton');
 const backToAddEventBtn = document.getElementById('backToAddEvent');
 
-const addEventForm = document.getElementById('addEventForm');
-
+/* =========================
+   Data Setup
+========================= */
 const sportsEvents = [
-    {
-        date: '2025-07-18',
-        info: '18:30, Football',
-        fullDescriptor: 'Sat., 18.07.2025, 18:30, Football, Salzburg vs. Sturm'
-    },
     {
         date: '2025-10-23',
         info: '09:45, Ice Hockey',
@@ -25,28 +24,40 @@ const sportsEvents = [
     }
 ];
 
+/* Weekday and month labels */
+const WEEKDAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 const MONTH_NAMES = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
+/* =========================
+   Helper Functions
+========================= */
+
+/* Converts a date into YYYY-MM-DD format */
 const formatDate = (year, monthIndex, day) => {
     const month = String(monthIndex + 1).padStart(2, '0');
     const dayStr = String(day).padStart(2, '0');
     return `${year}-${month}-${dayStr}`;
 };
 
+/* Finds all events matching a specific date */
 const getEventsForDate = (dateString) => {
     return sportsEvents.filter(event => event.date === dateString);
 };
 
-const showView = (view) => {
-    calendarSectionEl.style.display = view === 'calendar' ? 'block' : 'none';
-    detailSectionEl.style.display = view === 'detail' ? 'block' : 'none';
-    addEventSectionEl.style.display = view === 'addEvent' ? 'block' : 'none';
+/* Controls which section (view) is currently visible */
+const showView = (viewId) => {
+    calendarSectionEl.style.display = viewId === 'calendar' ? 'block' : 'none';
+    detailSectionEl.style.display = viewId === 'detail' ? 'block' : 'none';
+    addEventSectionEl.style.display = viewId === 'addEvent' ? 'block' : 'none';
 };
 
+/* Shortcuts for switching between main views */
 const showCalendarView = () => showView('calendar');
-
 const showAddEventView = () => showView('addEvent');
 
+/* =========================
+   Event Detail View
+========================= */
 const showEventDetail = (event) => {
     showView('detail');
     detailContentEl.innerHTML = '';
@@ -72,6 +83,9 @@ const showEventDetail = (event) => {
     detailContentEl.appendChild(backButton);
 };
 
+/* =========================
+   Calendar Rendering Logic
+========================= */
 const renderCalendar = (year, monthIndex) => {
     calendarEl.innerHTML = '';
 
@@ -83,12 +97,14 @@ const renderCalendar = (year, monthIndex) => {
 
     monthDisplayEl.textContent = `${MONTH_NAMES[monthIndex]} ${year}`;
 
+    /* Add padding cells for days from previous month */
     for (let i = 0; i < firstDayOfMonth; i++) {
         const paddingCell = document.createElement('div');
         paddingCell.className = 'day-cell other-month';
         calendarEl.appendChild(paddingCell);
     }
 
+    /* Build each day cell */
     for (let day = 1; day <= daysInMonth; day++) {
         const dayCell = document.createElement('div');
         dayCell.className = 'day-cell';
@@ -101,26 +117,29 @@ const renderCalendar = (year, monthIndex) => {
         const dateString = formatDate(year, monthIndex, day);
         const dayEvents = getEventsForDate(dateString);
 
+        /* Highlight today */
         if (dateString === currentDayKey) {
             dayCell.classList.add('current-day');
         }
 
+        /* Display event marker if day has an event */
         if (dayEvents.length > 0) {
-            const event = dayEvents[0];
-
             dayCell.classList.add('event-day');
 
             const eventMarker = document.createElement('div');
             eventMarker.className = 'event-marker';
             dayCell.appendChild(eventMarker);
 
+            /* Show first event summary */
             const eventInfo = document.createElement('div');
             eventInfo.className = 'event-info';
-            eventInfo.textContent = event.info;
+            eventInfo.textContent = dayEvents[0].info;
             dayCell.appendChild(eventInfo);
 
-            dayCell.onclick = () => showEventDetail(event);
+            /* Clicking opens event details */
+            dayCell.onclick = () => showEventDetail(dayEvents[0]);
         } else {
+            /* Days without events */
             dayCell.onclick = () => console.log(`No events on ${dateString}`);
         }
 
@@ -128,6 +147,10 @@ const renderCalendar = (year, monthIndex) => {
     }
 };
 
+/* =========================
+   Add Event Form Handling
+========================= */
+const addEventForm = document.getElementById('addEventForm');
 
 addEventForm.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -137,27 +160,37 @@ addEventForm.addEventListener('submit', (e) => {
     const sport = document.getElementById('eventSport').value;
     const teams = document.getElementById('eventTeams').value;
 
+    if (!date || !time || !sport || !teams) {
+        alert('Please fill out all fields before saving.');
+        return;
+    }
+
     const eventObj = {
         date: date,
         info: `${time}, ${sport}`,
         fullDescriptor: `${date}, ${time}, ${sport}, ${teams}`
     };
 
+    /* Add event and refresh the calendar */
     sportsEvents.push(eventObj);
 
     const selectedDate = new Date(date);
     renderCalendar(selectedDate.getFullYear(), selectedDate.getMonth());
 
-    addEventForm.reset();
     showCalendarView();
+    e.target.reset();
 });
 
+/* =========================
+   Navigation Event Listeners
+========================= */
+showCalendarBtn.addEventListener('click', showCalendarView);
+addEventBtn.addEventListener('click', showAddEventView);
+backToAddEventBtn.addEventListener('click', showCalendarView);
 
-showCalendarBtn.onclick = showCalendarView;
-addEventBtn.onclick = showAddEventView;
-backToAddEventBtn.onclick = showCalendarView;
-
-
+/* =========================
+   Initialization
+========================= */
 document.addEventListener('DOMContentLoaded', () => {
     const now = new Date();
     renderCalendar(now.getFullYear(), now.getMonth());
