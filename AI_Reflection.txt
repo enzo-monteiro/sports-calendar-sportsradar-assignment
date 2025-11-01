@@ -1,0 +1,24 @@
+﻿AI Usage Sports Calendar
+
+
+
+
+I’m going to be perfectly transparent: I used a lot of AI in order to accomplish this task. As I’ll explain further in my video questions, I’m very new to coding. I started studying on freecodecamp and Codecademy in February 2025, as I grew interested in a career in software development. I got proficient at HTML and CSS quickly, then started learning JavaScript and that’s when I had to take a break because of life circumstances. 
+
+
+When I applied for this internship, I really did not believe that anyone would get back to me. It was a shot in the dark. When they did, I sort of panicked. I thought that I would be in way over my head. It took mental discipline and encouragement from my wife for me to even attempt this task, as I knew when I read the instructions that my coding skills in JS specifically were not going to be sufficient. However, I knew that my HTML and CSS were on par. I could have hardcoded everything, but it would have been a massive waste of time.
+
+
+Even though I felt like an imposter, I asked AI for a lot of help with the JS. I can create functions and do basic things, but that’s it. My strategy, in order to make sure that it did not become out right cheating, is that I would ask AI (a mixture of GPT and Gemini) to generate different versions of the JS code, but my self-imposed rule was that I would not be allowed to upload it if I did not understand it. Would I be able to come up with my final JS code myself? No. Do I understand it? Yes.
+
+
+Knowing that you guys are looking for fast learners and good problem servers rather than professional coders was what kept me going and motivated. I had to resist the constant urge to give up and tell you guys that I just was not good enough. 
+
+
+It turns out that, through using AI during this task, I learned a lot. Firstly, I realized how unreliable AI could be. It kept making mistakes and not understanding what I was asking. I even started to fix AI’s code myself; that’s when I realized that I am not as incompetent a coder as I thought I was! This was much more interesting than I thought it was going to be because I broke everything down task-by-task and I had to watch out for AI mistakes, which kept me on my toes and forced me to understand what I was doing. What I thought was going to be AI doing everything for me turned into AI being more of a constant assistant, with me correcting it, explaining what I needed, trimming things that I did not understand or need, etc.
+
+
+In conclusion, my AI use was minimal with HTML and CSS. I only used it to be reminded of some syntax that I had forgotten because I had not coded in months, and I’m still a beginner. I generated all the JS with AI, but in a much more productive way than just asking it to do everything for me. I had to dive deeply into the suggested code, break it down bit-by-bit, understand it, and make it work.
+
+
+I hope that you will appreciate my honesty on this and that you won’t consider this cheating. I do love coding and I would love a career in software engineering. I learn very quickly and I am great at problem-solving. My actual raw coding skills are quite basic, but that can be easily solved by going back to Codecademy and studying intensely for a few months. If you need someone who is motivated, passionate, a team player, and who knows how to work around their limitations, I’m the right person.
